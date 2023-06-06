@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import './Chat.css';
 
 function Chat({ socket, name, room }) {
   const [message, setMessage] = useState();
@@ -26,9 +27,11 @@ function Chat({ socket, name, room }) {
   }, [socket])
 
   return (
-    <div>
+    <div className='chat-container'>
       <div className='chat-header'>
-        <p>Live Chat</p>
+        <div className='chat-header-red' />
+        <div className='chat-header-yellow' />
+        <div className='chat-header-green' />
       </div>
       <div className='chat-body'>
         {messageList.map((messageContent) => {
@@ -36,9 +39,15 @@ function Chat({ socket, name, room }) {
         })}
       </div>
       <div className='chat-footer'>
-        <input type='text' placeholder='message...'
+        <input
+          className='chat-message-input'
+          type='text' placeholder='Type Your Message...'
           onChange={(event) => { setMessage(event.target.value) }} />
-        <button onClick={sendMessage}>&#9658;</button>
+        <button
+          className='chat-message-button'
+          onClick={sendMessage}>
+          <span className='chat-send-icon'>&#9658;</span>
+        </button>
       </div>
     </div>
   )
