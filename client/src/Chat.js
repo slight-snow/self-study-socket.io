@@ -12,7 +12,8 @@ function Chat({ socket, name, room }) {
         room: room,
         author: name,
         message: message,
-        time: new Date(Date.now()).getHours() + ":" + new Date(Date.now()).getMinutes(),
+        time: String(new Date(Date.now()).getHours()).padStart(2, '0')
+          + ':' + String(new Date(Date.now()).getMinutes()).padStart(2, '0'),
       }
     }
 
@@ -35,7 +36,27 @@ function Chat({ socket, name, room }) {
       </div>
       <div className='chat-body'>
         {messageList.map((messageContent) => {
-          return <h1>{messageContent.message}</h1>
+          return (
+            <>
+              {messageContent.author === name ?
+                <>
+                  <div className='chat-my-author'>{messageContent.author}</div>
+                  <div className='chat-my'>
+                    <div className='chat-my-time'>{messageContent.time}</div>
+                    <div className='chat-my-content'>{messageContent.message}</div>
+                  </div>
+                </>
+                :
+                <>
+                  <div className='chat-other-author'>{messageContent.author}</div>
+                  <div className='chat-other'>
+                    <div className='chat-other-content'>{messageContent.message}</div>
+                    <div className='chat-other-time'>{messageContent.time}</div>
+                  </div>
+                </>
+              }
+            </>
+          )
         })}
       </div>
       <div className='chat-footer'>

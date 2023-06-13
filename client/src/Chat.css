@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'SUITE-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
+    format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ----------------------------------------------------------- */
+
 .chat-container {
   display: flex;
   flex-direction: column;
@@ -8,7 +18,10 @@
   border-radius: 20px;
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
     rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  font-family: 'SUITE-Regular';
 }
+
+/* HEADER */
 
 .chat-header {
   display: flex;
@@ -43,11 +56,75 @@
   border-radius: 100%;
 }
 
+/* BODY */
+
 .chat-body {
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 430px;
+  overflow: auto;
 }
+
+.chat-my {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chat-other {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.chat-my-author {
+  display: flex;
+  margin: 0 12px 5px auto;
+}
+
+.chat-other-author {
+  display: flex;
+  margin: 0 auto 5px 12px;
+}
+
+.chat-my-content {
+  display: flex;
+  max-width: 210px;
+  color: white;
+  background-color: rgb(107, 210, 108);
+  border-radius: 15px;
+  margin: 0 8px 0 0;
+  padding: 5px 13px 5px 13px;
+}
+
+.chat-other-content {
+  display: flex;
+  max-width: 210px;
+  color: black;
+  background-color: rgb(233, 233, 235);
+  border-radius: 15px;
+  margin: 0 0 0 8px;
+  padding: 5px 13px 5px 13px;
+}
+
+.chat-my-time {
+  display: flex;
+  margin-left: auto;
+  margin-right: 7px;
+  color: rgb(100, 100, 100);
+  font-size: 12px;
+}
+
+.chat-other-time {
+  display: flex;
+  margin-left: 7px;
+  margin-right: auto;
+  color: rgb(100, 100, 100);
+  font-size: 12px;
+}
+
+/* FOOTER */
 
 .chat-footer {
   display: flex;
