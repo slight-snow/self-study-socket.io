@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './Chat.css';
 
 function Chat({ socket, name, room }) {
@@ -18,14 +18,20 @@ function Chat({ socket, name, room }) {
     }
 
     await socket.emit('send_message', messageData);
-    setMessageList((list) => [...list, messageData])
+    setMessageList((list) => [...list, messageData]);
   }
 
   useEffect(() => {
     socket.on('receive_message', (data) => {
-      setMessageList((list) => [...list, data])
+      setMessageList((list) => [...list, data]);
     })
-  }, [socket])
+  }, [])
+
+  useEffect(() => {
+    scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+  }, [messageList])
+
+  const scrollRef = useRef();
 
   return (
     <div className='chat-container'>
@@ -40,7 +46,6 @@ function Chat({ socket, name, room }) {
             <>
               {messageContent.author === name ?
                 <>
-                  <div className='chat-my-author'>{messageContent.author}</div>
                   <div className='chat-my'>
                     <div className='chat-my-time'>{messageContent.time}</div>
                     <div className='chat-my-content'>{messageContent.message}</div>
@@ -48,7 +53,7 @@ function Chat({ socket, name, room }) {
                 </>
                 :
                 <>
-                  <div className='chat-other-author'>{messageContent.author}</div>
+                  <div className='chat-other-author'>{messageContent.author}:</div>
                   <div className='chat-other'>
                     <div className='chat-other-content'>{messageContent.message}</div>
                     <div className='chat-other-time'>{messageContent.time}</div>
@@ -58,6 +63,7 @@ function Chat({ socket, name, room }) {
             </>
           )
         })}
+        <div ref={scrollRef}></div>
       </div>
       <div className='chat-footer'>
         <input
@@ -70,7 +76,7 @@ function Chat({ socket, name, room }) {
           <span className='chat-send-icon'>&#9658;</span>
         </button>
       </div>
-    </div>
+    </div >
   )
 }
 
