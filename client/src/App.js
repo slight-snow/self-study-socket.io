@@ -19,6 +19,7 @@ function App() {
       setShow(true);
     }
   };
+  console.log('App')
 
   return (
     <div className='App'>
