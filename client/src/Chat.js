@@ -25,10 +25,10 @@ function Chat({ socket, name, room }) {
     socket.on('receive_message', (data) => {
       setMessageList((list) => [...list, data]);
     })
-  }, [])
+  }, [socket])
 
   useEffect(() => {
-    scrollRef.current.scrollIntoView({ behavior: 'smooth' })
+    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
   }, [messageList])
 
   const scrollRef = useRef();
@@ -40,7 +40,7 @@ function Chat({ socket, name, room }) {
         <div className='chat-header-yellow' />
         <div className='chat-header-green' />
       </div>
-      <div className='chat-body'>
+      <div className='chat-body' ref={scrollRef}>
         {messageList.map((messageContent) => {
           return (
             <>
@@ -63,7 +63,6 @@ function Chat({ socket, name, room }) {
             </>
           )
         })}
-        <div ref={scrollRef}></div>
       </div>
       <div className='chat-footer'>
         <input
