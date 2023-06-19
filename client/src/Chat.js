@@ -28,7 +28,9 @@ function Chat({ socket, name, room }) {
     return () => {
       socket.off('receive_message');
     }
-  }, [])
+  }, [socket])
+
+
 
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: 'smooth' })
@@ -44,26 +46,26 @@ function Chat({ socket, name, room }) {
         <div className='chat-header-green' />
       </div>
       <div className='chat-body'>
-        {messageList.map((messageContent) => {
+        {messageList.map((messageContent, index) => {
           return (
-            <>
+            <div key={index}>
               {messageContent.author === name ?
-                <>
-                  <div className='chat-my'>
-                    <div className='chat-my-time'>{messageContent.time}</div>
-                    <div className='chat-my-content'>{messageContent.message}</div>
+                <div key={messageContent}>
+                  <div className='chat-my' key={messageContent.author}>
+                    <div className='chat-my-time' key={messageContent.time}>{messageContent.time}</div>
+                    <div className='chat-my-content' key={messageContent.message}>{messageContent.message}</div>
                   </div>
-                </>
+                </div>
                 :
-                <>
-                  <div className='chat-other-author'>{messageContent.author}:</div>
-                  <div className='chat-other'>
-                    <div className='chat-other-content'>{messageContent.message}</div>
-                    <div className='chat-other-time'>{messageContent.time}</div>
+                <div key={messageContent}>
+                  <div className='chat-other-author' key={messageContent.author}>{messageContent.author}:</div>
+                  <div className='chat-other' key=''>
+                    <div className='chat-other-content' key={messageContent.message}>{messageContent.message}</div>
+                    <div className='chat-other-time' key={messageContent.time}>{messageContent.time}</div>
                   </div>
-                </>
+                </div>
               }
-            </>
+            </div>
           )
         })}
         <div ref={scrollRef}></div>
