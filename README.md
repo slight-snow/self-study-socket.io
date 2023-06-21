@@ -1,1 +1,3 @@
-# self-study-socket.io
+## Chat Function
+
+## Auto Scrolling
