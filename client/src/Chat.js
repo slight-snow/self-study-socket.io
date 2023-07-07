@@ -72,8 +72,14 @@ function Chat({ socket, name, room }) {
         <input
           className='chat-message-input'
           type='text' placeholder='Type Your Message...'
+          value={message}
           onChange={(event) => { setMessage(event.target.value) }}
-          onKeyUp={(event) => { if (event.key === 'Enter') { sendMessage() } }} />
+          onKeyUp={(event) => {
+            if (event.key === 'Enter') {
+              sendMessage()
+              setMessage('')
+            }
+          }} />
         <button
           className='chat-message-button'
           onClick={sendMessage}>
