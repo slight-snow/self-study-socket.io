@@ -30,8 +30,6 @@ function Chat({ socket, name, room }) {
     }
   }, [socket])
 
-
-
   useEffect(() => {
     scrollRef.current.scrollIntoView({ behavior: 'smooth' })
   }, [messageList])
@@ -74,7 +72,8 @@ function Chat({ socket, name, room }) {
         <input
           className='chat-message-input'
           type='text' placeholder='Type Your Message...'
-          onChange={(event) => { setMessage(event.target.value) }} />
+          onChange={(event) => { setMessage(event.target.value) }}
+          onKeyUp={(event) => { if (event.key === 'Enter') { sendMessage() } }} />
         <button
           className='chat-message-button'
           onClick={sendMessage}>
