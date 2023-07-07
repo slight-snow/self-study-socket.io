@@ -5,11 +5,18 @@
   <br />
 
 ## Modal Design
+
 <p align="center">
   <img src='https://cdn.discordapp.com/attachments/890401766724751370/1126896831079665764/2023-07-08_12.17.18.png' width=30% height=auto />
   <img src='https://cdn.discordapp.com/attachments/890401766724751370/1126896831339704320/2023-07-08_12.24.11.png' width=30% height=auto />
 </p>
 
+  <br />
+
 ## Chat Function
 
+  <br />
+
 ## Auto Scrolling
+
+  <br />
